@@ -51,11 +51,10 @@ extension UIView {
 		}
 		
 		// remove the animation
-		// this will rotate it back to the starting position
+		// this has the side effect of rotating it back to the starting angle
 		layer.removeAllAnimations()
 		
 		// rotate the view back to the correct rotation angle
-		// (otherwise the rotation would snap back to the start position)
 		layer.transform = CATransform3DMakeRotation(currentRotationAngle, 0, 0, 1)
 	}
 	
