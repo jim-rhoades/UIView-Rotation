@@ -30,10 +30,10 @@ extension UIView {
 		let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
 		rotationAnimation.fromValue = currentRotationAngle
 		if clockwise {
-			rotationAnimation.toValue = M_PI * 2.0 + Double(currentRotationAngle)
+			rotationAnimation.toValue = .pi * 2.0 + Double(currentRotationAngle)
 		}
 		else {
-			rotationAnimation.toValue = -M_PI * 2.0 + Double(currentRotationAngle)
+			rotationAnimation.toValue = -.pi * 2.0 + Double(currentRotationAngle)
 		}
 		rotationAnimation.duration = duration
 		rotationAnimation.repeatCount = repeatCount
