@@ -11,11 +11,11 @@ private let rotationAnimationKey = "rotationAnimationKey"
 extension UIView {
 	
 	/**
-	Animates rotating a UIView
+		Animates rotating a UIView
 	
-	- Parameter duration:		In seconds, how long it takes to rotate the UIView 360 degrees.
-	- Parameter repeatCount:	The number of times to repeat the rotation. Use ".infinity" to repeat indefinitely.
-	- Parameter clockwise:		Set to true if you want it to rotate clockwise, false if you want it to rotate counter-clockwise.
+		- Parameter duration:		In seconds, how long it takes to rotate the UIView 360 degrees.
+		- Parameter repeatCount:	The number of times to repeat the rotation. Use ".infinity" to repeat indefinitely.
+		- Parameter clockwise:		Set to true if you want it to rotate clockwise, false if you want it to rotate counter-clockwise.
 	*/
 	func startRotation(duration: CFTimeInterval, repeatCount: Float, clockwise: Bool) {
 		// this helped figure out how to start/stop from current rotation angle
@@ -43,7 +43,7 @@ extension UIView {
 	}
 	
 	/**
-	Stops the UIView from rotating, and keeps it at the rotation angle it had when it stopped.
+		Stops the UIView from rotating, and keeps it at the rotation angle it had when it stopped.
 	*/
 	func stopRotation() {
 		// get the current rotation angle of the view
@@ -54,21 +54,26 @@ extension UIView {
 		
 		// remove the animation
 		// this has the side effect of rotating it back to the starting angle
-		layer.removeAllAnimations()
+		layer.removeAnimation(forKey: rotationAnimationKey)
 		
 		// rotate the view back to the correct rotation angle
 		layer.transform = CATransform3DMakeRotation(currentRotationAngle, 0, 0, 1)
 	}
 	
 	/**
-	Resets the UIView back to its starting rotation angle.
+		Resets the UIView back to its starting rotation angle.
 	*/
 	func resetRotation() {
-		layer.transform = CATransform3DMakeRotation(0, 0, 0, 1)
+		if isRotating {
+			// remove the animation, which also it rotates it back to the starting angle
+			layer.removeAnimation(forKey: rotationAnimationKey)
+		} else {
+			layer.transform = CATransform3DMakeRotation(0, 0, 0, 1)
+		}
 	}
 	
 	/**
-	Whether or not the UIView is currently rotating. (read only)
+		Whether or not the UIView is currently rotating. (read only)
 	*/
 	var isRotating: Bool {
 		guard let animationKeys = layer.animationKeys() else { return false }
