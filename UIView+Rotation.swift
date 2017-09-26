@@ -65,7 +65,7 @@ extension UIView {
 	*/
 	func resetRotation() {
 		if isRotating {
-			// remove the animation, which also it rotates it back to the starting angle
+			// remove the animation, which also rotates it back to the starting angle
 			layer.removeAnimation(forKey: rotationAnimationKey)
 		} else {
 			layer.transform = CATransform3DMakeRotation(0, 0, 0, 1)
